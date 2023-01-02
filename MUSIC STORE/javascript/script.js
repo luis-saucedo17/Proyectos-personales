@@ -1,36 +1,38 @@
+let container = document.getElementsByClassName("item-image"); //Asignando el contenedor para el botón oculto.
 
-  let container = document.getElementsByClassName("item-image"); //Asignando el contenedor para el botón oculto.
+for (let i = 0; i < container.length; i++) {
+  let actualContainer = container[i];
+  actualContainer.addEventListener("mouseover", showButton);
+  actualContainer.addEventListener("mouseout", hideButton);
+}
 
-  for (let i = 0; i < container.length; i++) {
-    let actualContainer = container[i];
-    actualContainer.addEventListener("mouseover", showButton);
-    actualContainer.addEventListener("mouseout", hideButton);
-  }
+let cartBtn = document.getElementsByClassName("bx bx-cart")[0];
+let shoppingCart = document.getElementsByClassName("cart-container")[0];
+let closeBtn = document.getElementsByClassName("bx bx-x")[0];
 
-  let cartBtn = document.getElementsByClassName("bx bx-cart")[0];
-  let shoppingCart = document.getElementsByClassName("cart-container")[0];
-  let closeBtn = document.getElementsByClassName("bx bx-x")[0];
+cartBtn.addEventListener("click", showCart);
+closeBtn.addEventListener("click", hideCart);
 
-  cartBtn.addEventListener("click", showCart);
-  closeBtn.addEventListener("click", hideCart);
+let removeBtn = document.getElementsByClassName("btn-remove");
+for (let i = 0; i < removeBtn.length; i++) {
+  let button = removeBtn[i];
+  button.addEventListener("click", removeItem);
+}
 
-  let removeBtn = document.getElementsByClassName("btn-remove");
-  for (let i = 0; i < removeBtn.length; i++) {
-    let button = removeBtn[i];
-    button.addEventListener("click", removeItem);
-  }
+let quantityInput = document.getElementsByClassName("item-quantity");
+for (let i = 0; i < quantityInput.length; i++) {
+  let actualInput = quantityInput[i];
+  actualInput.addEventListener("change", quantityChanged);
+}
 
-  let quantityInput = document.getElementsByClassName("item-quantity");
-  for (let i = 0; i < quantityInput.length; i++) {
-    let actualInput = quantityInput[i];
-    actualInput.addEventListener("change", quantityChanged);
-  }
+let hiddenBtn = document.getElementsByClassName("button");
+for (let i = 0; i < hiddenBtn.length; i++) {
+  let actualBtn = hiddenBtn[i];
+  actualBtn.addEventListener("click", addItem);
+}
 
-  let hiddenBtn = document.getElementsByClassName("button");
-  for (let i = 0; i < hiddenBtn.length; i++) {
-    let actualBtn = hiddenBtn[i];
-    actualBtn.addEventListener("click", addItem);
-  }
+let purchaseBtn = document.getElementsByClassName("btn-purchase")[0];
+purchaseBtn.addEventListener("click", purchase)
 
 function showButton() {
   let button = document.getElementsByClassName("button-hover");
@@ -56,35 +58,13 @@ function hideCart() {
   shoppingCart.classList.remove("visible");
 }
 
-function removeItem(e) {
-  let container = e.target.parentElement.parentElement.remove();
-  refreshCart();
-}
-
-function refreshCart() {
-  let cartContainer = document.getElementsByClassName("cart-container")[0];
-  let cartItems = cartContainer.getElementsByClassName("cart-item");
-  let total = 0;
-  for (let i = 0; i < cartItems.length; i++) {
-    let item = cartItems[i];
-    let priceItem = cartItems.getElementsByClassName("item-price")[0].innerText;
-    let itemQuantity =
-      cartItems.getElementsByClassName("item-quantity")[0].value;
-    let price = parseFloat(priceItem.replace("$", ""));
-
-    total = total + price * itemQuantity;
+function purchase() {
+  alert("Thank you for your purchase!");
+  let container = document.getElementsByClassName("rows-container")[0];
+  while (container.hasChildNodes()) {
+    container.removeChild(container.firstChild)
   }
-  total = Math.round(total * 100) / 100;
-  let cartTotal = (document.getElementsByClassName("cart-total")[0].innerText =
-    "$" + total);
-}
-
-function quantityChanged(e) {
-  let input = e.target;
-  if (isNaN(input.value) || input.value <= 0) {
-    input.value = 1;
-  }
-  refreshCart();
+  refreshCart()
 }
 
 function addItem(e) {
@@ -100,7 +80,7 @@ function addItem(e) {
 function addToCart(price, title, image) {
   let newItem = document.createElement("div");
   newItem.classList.add("cart-item");
-  let cartContainer = document.getElementsByClassName("cart-container")[0];
+  let cartContainer = document.getElementsByClassName("rows-container")[0];
   let itemTitles = cartContainer.getElementsByClassName("item-title");
   for (let i = 0; i < itemTitles.length; i++) {
     if (itemTitles[i].innerText == title) {
@@ -131,4 +111,34 @@ function addToCart(price, title, image) {
   let input = newItem
     .getElementsByClassName("item-quantity")[0]
     .addEventListener("change", quantityChanged);
+}
+
+function quantityChanged(e) {
+  let input = e.target;
+  if (isNaN(input.value) || input.value <= 0) {
+    input.value = 1;
+  }
+  refreshCart();
+}
+
+function refreshCart() {
+  let cartContainer = document.getElementsByClassName("cart-container")[0];
+  let cartItems = cartContainer.getElementsByClassName("cart-item");
+  let total = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    let item = cartItems[i];
+    let priceItem = item.getElementsByClassName("item-price")[0].innerText;
+    let itemQuantity = item.getElementsByClassName("item-quantity")[0].value;
+    let price = parseFloat(priceItem.replace("$", ""));
+
+    total = total + price * itemQuantity;
+  }
+  total = Math.round(total * 100) / 100;
+  let cartTotal = (document.getElementsByClassName("cart-total")[0].innerText =
+    "$" + total);
+}
+
+function removeItem(e) {
+  let container = e.target.parentElement.parentElement.remove();
+  refreshCart();
 }
