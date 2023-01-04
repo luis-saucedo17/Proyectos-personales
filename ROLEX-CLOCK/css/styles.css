@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(46, 38, 27);
+  background: linear-gradient(
+    53deg,
+    rgba(46, 38, 27, 1) 4%,
+    rgba(86, 71, 51, 1) 22%,
+    rgba(151, 130, 107, 1) 77%,
+    rgba(219, 197, 174, 1) 98%
+  );
+}
+
+.clock {
+  display: flex;
+  width: 350px;
+  height: 350px;
+  justify-content: center;
+  align-items: center;
+  background: url(../img/clock.png) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border: 4px solid rgba(151, 130, 107, 1) 77%;
+  border-radius: 50%;
+  box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
+    inset 0 15px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.clock:before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 100;
+}
+
+.clock .hours,
+.clock .minutes,
+.clock .seconds {
+  position: absolute;
+}
+
+.clock .hours,
+.hrs {
+  width: 160px;
+  height: 160px;
+}
+
+.clock .minutes,
+.min {
+  width: 190px;
+  height: 190px;
+}
+
+.clock .seconds,
+.sec {
+  width: 230px;
+  height: 230px;
+}
+
+.hrs,
+.min,
+.sec {
+  --rotation: 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(calc(var(--rotation) * 1deg));
+}
+
+.hrs:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 80px;
+  background: #2f0506;
+  border: 0.5px solid #cea669;
+  z-index: 10;
+  border-radius: 6px 6px 0 0;
+}
+
+.min:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 92px;
+  background: #898687;
+  border: 0.5px solid #cea669;
+  z-index: 11;
+  border-radius: 6px 6px 0 0;
+}
+
+.sec:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 150px;
+  background: white;
+  border: 0.5px solid #cea669;
+  z-index: 12;
+  border-radius: 6px 6px 0 0;
+}
