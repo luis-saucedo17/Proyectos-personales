@@ -11,40 +11,94 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <title>Document</title>
   </head>
-  <body>
-    <div class="banner">
-      <div class="clock">
-        <div class="hours">
-          <div class="hrs" id="hrs"></div>
-        </div>
-        <div class="minutes">
-          <div class="min" id="min"></div>
-        </div>
-        <div class="seconds">
-          <div class="sec" id="sec"></div>
-        </div>
-      </div>
-    </div>
-    <nav class="first-header">
-      <div class="watch-brand">
-        <h2>Oyster Perpetual</h2>
-        <p>Do Not Waste Time</p>
-        <div class="next">
-          <a href=""><i class="bx bxs-circle" style="color: #282626"></i></a>
-          <a href=""><i class="bx bxs-circle" style="color: #282626"></i></a>
-          <a href=""><i class="bx bxs-circle" style="color: #282626"></i></a>
-        </div>
-      </div>
-      <div class="bubble">
-        <div class="skip">
-          <a href="#"><span>Skip</span></a>
-        </div>
-      </div>
-    </nav>
 
-    <div class="btn-bottom">
-      <input type="checkbox" name="" id="" />
+  <body>
+    <div class="container-all">
+      <input type="radio" name="item-slide" id="1" hidden />
+      <input type="radio" name="item-slide" id="2" hidden />
+      <input type="radio" name="item-slide" id="3" hidden />
+
+      <div class="slide">
+        <div class="item-slide">
+          <div class="banner">
+            <div class="clock">
+              <div class="hours">
+                <div class="hrs" id="hrs"></div>
+              </div>
+              <div class="minutes">
+                <div class="min" id="min"></div>
+              </div>
+              <div class="seconds">
+                <div class="sec" id="sec"></div>
+              </div>
+            </div>
+            <nav class="header">
+              <div class="watch-brand">
+                <h2>Oyster Perpetual</h2>
+                <p>Do Not Waste Time</p>
+              </div>
+              <div class="bubble">
+                <div class="skip">
+                  <a href="#" class="skip-text">Skip</a>
+                </div>
+              </div>
+            </nav>
+            <div class="btn-bottom">
+              <input type="checkbox" name="" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="item-slide">
+          <div class="clock-2"></div>
+          <nav class="header">
+            <div class="watch-brand">
+              <h2>Montblanc Star</h2>
+              <p>Legacy Chronograph 42 mm</p>
+            </div>
+            <div class="bubble">
+              <div class="skip">
+                <a href="#" class="skip-text">Skip</a>
+              </div>
+            </div>
+          </nav>
+          <div class="btn-bottom">
+            <input type="checkbox" name="" id="" />
+          </div>
+        </div>
+
+        <div class="item-slide">
+          <div class="clock-3"></div>
+          <nav class="header">
+            <div class="watch-brand">
+              <h2>TAG HEUER CARRERA</h2>
+              <p>Porsche Chronograph 44 mm</p>
+            </div>
+            <div class="bubble">
+              <div class="skip">
+                <a href="#" class="skip-text">Skip</a>
+              </div>
+            </div>
+          </nav>
+          <div class="btn-bottom">
+            <input type="checkbox" name="" id="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <label for="1" class="pagination-item">
+          <img src="/img/clock.png" alt="" />
+        </label>
+        <label for="2" class="pagination-item">
+          <img src="/img/montblanc.png" alt="" />
+        </label>
+        <label for="3" class="pagination-item">
+          <img src="/img/tag-heuer.png" alt="" />
+        </label>
+      </div>
     </div>
+
     <script src="../javascript/script.js"></script>
   </body>
 </html>
